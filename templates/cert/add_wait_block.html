@@ -1,0 +1,34 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <title>Form Điền Thông Tin Chứng Chỉ</title>
+</head>
+<body>
+    <div id="wraper">
+        <div class="contrainer">
+            <div class="row justify-content-around">
+                <form action="/add-wait-block/" class="col-md-6 bg-light p-3 my-3" method="POST">
+                    {% csrf_token %}
+                    <h1 class="text-center
+                    text-uppercase h3 py-3">Form Điền Thông Tin Chứng Chỉ</h1>
+                    <div class="form-grup  py-3">
+                        {{ form.teacher|as_crispy_field }}
+                    </div>
+                    <div class="form-grup">
+                        {{ form.course_name|as_crispy_field }}
+                    </div>
+                    <div class="form-grup ">
+                        {{ form.final_mark|as_crispy_field }}
+                    </div>
+                    <input type="submit" value="Đăng Ký" class="btn-primary btn btn-block ">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Register</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+        <style>
+                                        body {
+                                background: linear-gradient(
+                                        140deg,
+                                        hsl(120deg 87% 88%) 0%,
+                                        hsl(189deg 100% 79%) 44%,
+                                        hsl(251deg 100% 91%) 100%
+                                );
+                            }
+            .formRow {
+                position: relative;
+                width: 100%;
+            }
+
+            .formRow--item {
+                display: block;
+                width: 100%;
+            }
+
+            .formRow--input {
+                position: relative;
+                padding: 15px 20px 11px;
+                width: 100%;
+                outline: none;
+                border: solid 1px #95989a;
+                border-radius: 4px;
+                color: #2c3235;
+                letter-spacing: 0.2px;
+                font-weight: 400;
+                font-size: 16px;
+                resize: none;
+                -webkit-transition: all 0.2s ease;
+                transition: all 0.2s ease;
+            }
+
+            .formRow--input-wrapper {
+                position: relative;
+                display: block;
+                width: 100%;
+            }
+
+            .formRow--input-wrapper.active .placeholder {
+                top: -5px;
+                background-color: #ffffff;
+                color: #007bff;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                font-size: 11px;
+                line-height: 14px;
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+            }
+
+            .formRow .placeholder {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                display: block;
+                padding: 0 10px;
+                color: #95989a;
+                white-space: nowrap;
+                letter-spacing: 0.2px;
+                font-weight: normal;
+                font-size: 16px;
+                -webkit-transition: all, 0.2s;
+                transition: all, 0.2s;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                pointer-events: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .card{
+                    border-radius: 15px;
+            }
+            .card-img-top{
+                       border-radius: 15px 15px 0px 0px;
+             }
+            @media only screen and (max-width: 450px)
+            {
+                #toppk{
+                    height: 5vh;
+                }
+                h2{
+                    font-size: 1.5rem;
+                }
+                h4{
+                    font-size: 1.0rem;
+                }
+                .card-img-top {
+                    aspect-ratio: 400/200;
+                }
+            }
+            @media only screen and (min-width: 451px) and (max-width: 767px)
+            {
+                .card-img-top {
+                    aspect-ratio: 400/200;
+                }
+                #toppk{
+                    height: 7vh;
+                }
+            }
+            @media only screen and (min-width: 768px)
+            {
+                .card-img-top {
+                    aspect-ratio: 400/250;
+                }
+                #toppk{
+                    height: 20vh;
+                }
+            }
+
+        </style>
+    </head>
+    <body style="height: 100vh;">
+        <div class="container text-center" >
+            <div id="toppk"></div>
+            <div id="opac" class="row justify-content-center">
+                <div class="col-12">
+                    <h2>ĐĂNG KÝ TÀI KHOẢN MỚI</h2>
+                    <h4>Chọn vai trò để tiếp tục</h4>
+                </div>
+                <div class="col-xl-3 col-xl-4 col-lg-5 col-md-5 col-sm-8 col-10 m-2">
+                    <div class="shadow card" id="gv">
+                        <img class="card-img-top" src="{% static 'images/234.jpg' %}" alt="Card image cap" />
+                        <div class="card-body">
+                            <h5 class="card-title">Giảng viên</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-xl-4 col-lg-5 col-md-5 col-sm-8 col-10 m-2">
+                    <div class="shadow card" id="hs">
+                        <img class="card-img-top" src="{% static 'images/123.jpg' %}" alt="Card image cap" />
+                        <div class="card-body">
+                            <h5 class="card-title">Sinh viên</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-12 text-right pb-5 mt-5"><a href="/account/login/" class="text-primary"> đăng nhập </a></div>
+                </div>
+
+            </div>
+            <div id="formTue" class="row justify-content-center" style="display: none;">
+                <div class="col-xl-6 col-xl-7 col-lg-8 col-md-9 col-sm-11 card shadow">
+                    <form method="POST" action="" class="text-left form-group pt-4">
+                        <h3 id="hss">Bạn đang đăng ký với vai trò sinh viên</h3>
+                        <h3 id="gvv">Bạn đang đăng ký với vai trò giảng viên</h3>
+                        <h5 class="pb-5"><a id="agen" href="#" class="text-primary"> Thay đổi vai trò</a></h5>
+                        {% csrf_token %}
+                        <h5 class="pb-2">Thông tin cá nhân</h5>
+                        <fieldset class="formRow">
+                            <div class="formRow--item">
+                                <label class="formRow--input-wrapper js-inputWrapper">
+                                    {{form.full_name}}
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div id="student_code">
+                            <fieldset class="formRow">
+                                <div class="formRow--item">
+                                    <label class="formRow--input-wrapper js-inputWrapper">
+                                        {{form.student_code}}
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <h5 class="pb-2 pt-3">Thông tin tài khoản</h5>
+
+                        <fieldset class="formRow pb-1">
+                            <div class="formRow--item">
+                                <label class="formRow--input-wrapper js-inputWrapper">
+                                    {{form.user_name}}
+                                </label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="formRow pb-1">
+                            <div class="formRow--item">
+                                <label class="formRow--input-wrapper js-inputWrapper">
+                                    {{form.password1}}
+                                </label>
+                            </div>
+                        </fieldset>
+                        <fieldset class="formRow pb-1">
+                            <div class="formRow--item">
+                                <label class="formRow--input-wrapper js-inputWrapper">
+                                    {{form.password2}}
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div id="is_teacher" style="display: none;">
+                            {{form.is_teacher}}
+                        </div>
+                        {{form.errors}}
+                        <div class="text-right pb-2">
+                            <button type="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script>
+            if ($("#id_user_name").val() != ""){
+                $("#opac").hide();
+                $("#formTue").show();
+                if($('#id_is_teacher').is(':checked')){
+                    $("#hss").hide();
+                }else{
+                    $("#gvv").hide();
+                }
+            }
+            $("#hs").click(function () {
+                $("#opac").hide();
+                $("#formTue").show();
+                $("#hss").show();
+                $("#gvv").hide();
+                $("#student_code").show();
+                $("#is_teacher").children().prop("checked", false);
+                $("#sub").val("true");
+            });
+            $("#gv").click(function () {
+                $("#opac").hide();
+                $("#formTue").show();
+                $("#hss").hide();
+                $("#gvv").show();
+                $("#student_code").hide();
+                $("#is_teacher").children().prop("checked", true);
+                $("#sub").val("true");
+            });
+
+            $("#agen").click(function () {
+                $("#opac").show();
+                $("#formTue").hide();
+            });
+        </script>
+
+        <script>
+            $("#id_user_name").attr("placeholder", "Username..");
+            $("#id_full_name").attr("placeholder", "Họ và tên..");
+            $("#id_student_code").attr("placeholder", "Student Code");
+            $("#id_password1").attr("placeholder", "Password");
+            $("#id_password2").attr("placeholder", "Re-enter Password...");
+            $("input").addClass("formRow--input js-input form-control");
+
+            var $inputItem = $(".js-inputWrapper");
+            $inputItem.length &&
+                $inputItem.each(function () {
+                    var $this = $(this),
+                        $input = $this.find(".formRow--input"),
+                        placeholderTxt = $input.attr("placeholder"),
+                        $placeholder;
+
+                    $input.after('<span class="placeholder">' + placeholderTxt + "</span>"),
+                        $input.attr("placeholder", ""),
+                        ($placeholder = $this.find(".placeholder")),
+                        $input.val().length ? $this.addClass("active") : $this.removeClass("active"),
+                        $input
+                            .on("focusout", function () {
+                                $input.val().length ? $this.addClass("active") : $this.removeClass("active");
+                            })
+                            .on("focus", function () {
+                                $this.addClass("active");
+                            });
+                });
+        </script>
+    </body>
+</html>

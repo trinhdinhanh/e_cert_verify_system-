@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+ app:
+  build: .
+  volumes:
+   - .:/app
+  ports:
+   - 8000:8000
+  image: phamvanminh7531/e_cert_sys:latest
+  container_name: e_cert_container
+  command: python3 manage.py runserver 0.0.0.0:8000
